@@ -1,11 +1,27 @@
 # 🗑️ Food Waste Tracker
 
-A modern, responsive web application for monitoring and analyzing food waste data. Track wasted food quantities, understand waste patterns, and calculate how much edible waste could serve people in need.
+> **Turn waste into wisdom.** A powerful, intuitive web application that transforms food waste tracking into meaningful action. Monitor what's being wasted, discover patterns through beautiful visualizations, and understand the real impact—how many people could be fed with the food we throw away.
+
+Every year, billions of tons of food are wasted while millions go hungry. This application bridges that gap by helping organizations and individuals track their food waste with precision, analyze trends with interactive charts, and quantify the social impact in terms of servings that could feed those in need.
+
+**Built with modern web technologies and a commitment to making a difference.** 🌍
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![React](https://img.shields.io/badge/React-18.3-61dafb.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6.svg)
 ![Vite](https://img.shields.io/badge/Vite-7.2-646cff.svg)
+
+## 🎥 Demo Video
+
+Watch the Food Waste Tracker in action:
+
+```html
+<video src="./screenshots/demo.mp4" controls width="100%"></video>
+```
+
+
+
+
 
 ## ✨ Features
 
@@ -46,9 +62,6 @@ A modern, responsive web application for monitoring and analyzing food waste dat
 ![Entry List](./screenshots/entry-list.png)
 *View and manage all waste entries with delete functionality*
 
-### Mobile Responsive
-![Mobile View](./screenshots/mobile.png)
-*Fully responsive design for mobile devices*
 
 ## 🚀 Getting Started
 
