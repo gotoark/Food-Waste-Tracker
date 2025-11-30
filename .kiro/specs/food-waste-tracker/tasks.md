@@ -119,7 +119,7 @@
   - Test conversion of entries to line chart data with time grouping
   - _Requirements: 3.1, 3.2, 3.3_
 
-- [ ] 9. Build WasteEntryList component
+- [x] 9. Build WasteEntryList component
   - Create table or list displaying all waste entries
   - Show food type, category, quantity, edibility, and timestamp for each entry
   - Add delete button for each entry with confirmation dialog
