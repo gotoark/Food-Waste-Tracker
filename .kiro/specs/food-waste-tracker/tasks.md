@@ -134,7 +134,7 @@
   - Test empty state message display when entries array is empty
   - _Requirements: 5.4, 6.3_
 
-- [ ] 10. Create main Dashboard component
+- [x] 10. Create main Dashboard component
   - Compose all components: WasteEntryForm, StatisticsPanel, ChartSection, WasteEntryList
   - Calculate statistics from entries using calculation service
   - Implement responsive layout with CSS Grid or Flexbox
