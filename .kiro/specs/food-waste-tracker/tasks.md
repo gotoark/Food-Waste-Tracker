@@ -58,7 +58,7 @@
   - **Property 11: Number formatting consistency**
   - **Validates: Requirements 4.4**
 
-- [ ] 5. Create global state management with Context API
+- [x] 5. Create global state management with Context API
   - Create WasteContext with state for entries array
   - Implement addEntry, deleteEntry, and loadEntries actions
   - Add useWaste custom hook for consuming context
