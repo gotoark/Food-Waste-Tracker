@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/**
+ * App - Root component for the Food Waste Tracker application
+ * Wraps the application with WasteContext provider and error boundary
+ * 
+ * Requirements: 6.1, 6.4
+ */
 
+import { WasteProvider } from './context/WasteContext';
+import { Dashboard, ErrorBoundary } from './components';
+import './App.css';
+
+/**
+ * Root App component
+ * - Wraps application with WasteContext provider for global state
+ * - Wraps with ErrorBoundary for graceful error handling
+ * - Loads initial data from storage on mount (handled by WasteProvider)
+ * - Renders Dashboard component
+ */
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ErrorBoundary>
+      <WasteProvider>
+        <Dashboard />
+      </WasteProvider>
+    </ErrorBoundary>
+  );
 }
 
-export default App
+export default App;
