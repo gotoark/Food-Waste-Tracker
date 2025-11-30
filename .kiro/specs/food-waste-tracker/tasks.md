@@ -8,7 +8,7 @@
   - Create folder structure: components, services, types, context
   - _Requirements: 7.1_
 
-- [ ] 2. Define core types and data models
+- [x] 2. Define core types and data models
   - Create TypeScript interfaces for WasteEntry, WasteStatistics
   - Define WasteCategory enum with all food categories
   - Create type definitions for form inputs and validation errors
