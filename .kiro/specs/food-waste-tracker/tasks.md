@@ -28,7 +28,7 @@
   - **Property 14: Storage error handling**
   - **Validates: Requirements 6.4**
 
-- [ ] 4. Implement calculation service
+- [x] 4. Implement calculation service
   - Create calculationService.ts with serving calculation function
   - Implement statistics aggregation functions (total waste, edible percentage, entry count)
   - Add number formatting utilities with proper decimal places and units
