@@ -20,19 +20,19 @@ interface ChartSectionProps {
 export function ChartSection({ entries }: ChartSectionProps) {
   return (
     <div className="chart-section">
-      <h2 className="chart-section-title">Waste Analytics</h2>
+      <h2 id="charts-heading" className="chart-section-title">Waste Analytics</h2>
       
       <div className="chart-grid">
-        <div className="chart-container">
+        <div className="chart-container" role="img" aria-label="Pie chart showing waste distribution by category">
           <h3 className="chart-title">Waste Distribution by Category</h3>
           <PieChart entries={entries} />
         </div>
 
-        <div className="chart-container">
+        <div className="chart-container" role="img" aria-label="Bar chart comparing edible versus non-edible waste">
           <BarChart entries={entries} />
         </div>
 
-        <div className="chart-container chart-container-wide">
+        <div className="chart-container chart-container-wide" role="img" aria-label="Line chart showing waste trends over time">
           <LineChart entries={entries} />
         </div>
       </div>

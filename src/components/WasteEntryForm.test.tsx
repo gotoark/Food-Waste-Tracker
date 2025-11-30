@@ -19,7 +19,7 @@ describe('WasteEntryForm', () => {
     expect(screen.getByLabelText(/category/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/quantity/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/edible/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /add entry/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /add waste entry/i })).toBeInTheDocument();
   });
 
   it('displays validation errors for empty required fields', () => {
@@ -29,7 +29,7 @@ describe('WasteEntryForm', () => {
       </WasteProvider>
     );
 
-    const submitButton = screen.getByRole('button', { name: /add entry/i });
+    const submitButton = screen.getByRole('button', { name: /add waste entry/i });
     fireEvent.click(submitButton);
 
     expect(screen.getByText('Food type is required')).toBeInTheDocument();
@@ -55,7 +55,7 @@ describe('WasteEntryForm', () => {
     fireEvent.change(quantityInput, { target: { value: '500' } });
     fireEvent.click(edibleCheckbox);
 
-    const submitButton = screen.getByRole('button', { name: /add entry/i });
+    const submitButton = screen.getByRole('button', { name: /add waste entry/i });
     fireEvent.click(submitButton);
 
     // Form should be reset after successful submission
@@ -80,7 +80,7 @@ describe('WasteEntryForm', () => {
     fireEvent.change(quantityInput, { target: { value: '500' } });
 
     // Submit the form
-    const submitButton = screen.getByRole('button', { name: /add entry/i });
+    const submitButton = screen.getByRole('button', { name: /add waste entry/i });
     fireEvent.click(submitButton);
 
     // Check that form is reset
@@ -97,7 +97,7 @@ describe('WasteEntryForm', () => {
     );
 
     // Trigger validation errors
-    const submitButton = screen.getByRole('button', { name: /add entry/i });
+    const submitButton = screen.getByRole('button', { name: /add waste entry/i });
     fireEvent.click(submitButton);
 
     expect(screen.getByText('Food type is required')).toBeInTheDocument();

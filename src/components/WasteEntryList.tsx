@@ -74,17 +74,17 @@ export function WasteEntryList({ entries, onDelete }: WasteEntryListProps) {
 
   return (
     <div className="waste-entry-list">
-      <h2>Waste Entries ({entries.length})</h2>
-      <div className="table-container">
-        <table className="entries-table">
+      <h2 id="entries-heading">Waste Entries ({entries.length})</h2>
+      <div className="table-container" role="region" aria-labelledby="entries-heading" tabIndex={0}>
+        <table className="entries-table" aria-label="List of waste entries">
           <thead>
             <tr>
-              <th>Food Type</th>
-              <th>Category</th>
-              <th>Quantity</th>
-              <th>Edible</th>
-              <th>Date</th>
-              <th>Actions</th>
+              <th scope="col">Food Type</th>
+              <th scope="col">Category</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Edible</th>
+              <th scope="col">Date</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -94,7 +94,11 @@ export function WasteEntryList({ entries, onDelete }: WasteEntryListProps) {
                 <td>{entry.category}</td>
                 <td>{entry.quantityGrams}g</td>
                 <td>
-                  <span className={`edible-badge ${entry.isEdible ? 'edible' : 'non-edible'}`}>
+                  <span 
+                    className={`edible-badge ${entry.isEdible ? 'edible' : 'non-edible'}`}
+                    role="status"
+                    aria-label={entry.isEdible ? 'Edible' : 'Not edible'}
+                  >
                     {entry.isEdible ? 'Yes' : 'No'}
                   </span>
                 </td>
@@ -103,7 +107,7 @@ export function WasteEntryList({ entries, onDelete }: WasteEntryListProps) {
                   <button
                     className="delete-button"
                     onClick={() => handleDeleteClick(entry.id)}
-                    aria-label={`Delete ${entry.foodType} entry`}
+                    aria-label={`Delete ${entry.foodType} entry from ${formatDate(entry.timestamp)}`}
                   >
                     Delete
                   </button>
@@ -116,15 +120,32 @@ export function WasteEntryList({ entries, onDelete }: WasteEntryListProps) {
 
       {/* Confirmation Dialog */}
       {deleteConfirmId && (
-        <div className="confirmation-dialog-overlay" onClick={handleCancelDelete}>
+        <div 
+          className="confirmation-dialog-overlay" 
+          onClick={handleCancelDelete}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="dialog-title"
+          aria-describedby="dialog-description"
+        >
           <div className="confirmation-dialog" onClick={(e) => e.stopPropagation()}>
-            <h3>Confirm Deletion</h3>
-            <p>Are you sure you want to delete this waste entry? This action cannot be undone.</p>
+            <h3 id="dialog-title">Confirm Deletion</h3>
+            <p id="dialog-description">
+              Are you sure you want to delete this waste entry? This action cannot be undone.
+            </p>
             <div className="dialog-actions">
-              <button className="cancel-button" onClick={handleCancelDelete}>
+              <button 
+                className="cancel-button" 
+                onClick={handleCancelDelete}
+                aria-label="Cancel deletion"
+              >
                 Cancel
               </button>
-              <button className="confirm-button" onClick={handleConfirmDelete}>
+              <button 
+                className="confirm-button" 
+                onClick={handleConfirmDelete}
+                aria-label="Confirm deletion"
+              >
                 Delete
               </button>
             </div>

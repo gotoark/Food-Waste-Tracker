@@ -113,12 +113,12 @@ export function WasteEntryForm() {
   };
 
   return (
-    <form className="waste-entry-form" onSubmit={handleSubmit}>
-      <h2>Add Waste Entry</h2>
+    <form className="waste-entry-form" onSubmit={handleSubmit} aria-labelledby="form-heading">
+      <h2 id="form-heading">Add Waste Entry</h2>
 
       <div className="form-group">
         <label htmlFor="foodType">
-          Food Type <span className="required">*</span>
+          Food Type <span className="required" aria-label="required">*</span>
         </label>
         <input
           type="text"
@@ -128,15 +128,19 @@ export function WasteEntryForm() {
           onChange={handleChange}
           className={errors.foodType ? 'error' : ''}
           placeholder="e.g., Leftover rice"
+          aria-invalid={!!errors.foodType}
+          aria-describedby={errors.foodType ? 'foodType-error' : undefined}
         />
         {errors.foodType && (
-          <span className="error-message">{errors.foodType}</span>
+          <span className="error-message" id="foodType-error" role="alert">
+            {errors.foodType}
+          </span>
         )}
       </div>
 
       <div className="form-group">
         <label htmlFor="category">
-          Category <span className="required">*</span>
+          Category <span className="required" aria-label="required">*</span>
         </label>
         <select
           id="category"
@@ -144,6 +148,8 @@ export function WasteEntryForm() {
           value={formData.category}
           onChange={handleChange}
           className={errors.category ? 'error' : ''}
+          aria-invalid={!!errors.category}
+          aria-describedby={errors.category ? 'category-error' : undefined}
         >
           <option value="">Select a category</option>
           <option value={WasteCategory.FRUITS}>{WasteCategory.FRUITS}</option>
@@ -154,13 +160,15 @@ export function WasteEntryForm() {
           <option value={WasteCategory.OTHER}>{WasteCategory.OTHER}</option>
         </select>
         {errors.category && (
-          <span className="error-message">{errors.category}</span>
+          <span className="error-message" id="category-error" role="alert">
+            {errors.category}
+          </span>
         )}
       </div>
 
       <div className="form-group">
         <label htmlFor="quantityGrams">
-          Quantity (grams) <span className="required">*</span>
+          Quantity (grams) <span className="required" aria-label="required">*</span>
         </label>
         <input
           type="number"
@@ -172,9 +180,13 @@ export function WasteEntryForm() {
           placeholder="e.g., 500"
           min="1"
           max="99999"
+          aria-invalid={!!errors.quantityGrams}
+          aria-describedby={errors.quantityGrams ? 'quantityGrams-error' : undefined}
         />
         {errors.quantityGrams && (
-          <span className="error-message">{errors.quantityGrams}</span>
+          <span className="error-message" id="quantityGrams-error" role="alert">
+            {errors.quantityGrams}
+          </span>
         )}
       </div>
 
@@ -186,12 +198,13 @@ export function WasteEntryForm() {
             name="isEdible"
             checked={formData.isEdible}
             onChange={handleChange}
+            aria-describedby="isEdible-description"
           />
-          <span>This food is edible and could serve people in need</span>
+          <span id="isEdible-description">This food is edible and could serve people in need</span>
         </label>
       </div>
 
-      <button type="submit" className="submit-button">
+      <button type="submit" className="submit-button" aria-label="Add waste entry">
         Add Entry
       </button>
     </form>

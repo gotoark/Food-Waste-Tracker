@@ -25,7 +25,11 @@ export function Dashboard() {
 
   return (
     <div className="dashboard">
-      <header className="dashboard-header">
+      <a href="#main-content" className="skip-to-main">
+        Skip to main content
+      </a>
+      
+      <header className="dashboard-header" role="banner">
         <h1>Food Waste Tracker</h1>
         <p className="dashboard-subtitle">
           Monitor and analyze food waste to understand its impact
@@ -34,40 +38,52 @@ export function Dashboard() {
 
       {/* Storage error notification */}
       {storageError && (
-        <div className="error-banner" role="alert">
+        <div className="error-banner" role="alert" aria-live="assertive">
           <strong>Storage Error:</strong> {storageError}
         </div>
       )}
 
       {/* Warning if storage is unavailable */}
       {!isStorageAvailable && (
-        <div className="warning-banner" role="alert">
+        <div className="warning-banner" role="alert" aria-live="polite">
           <strong>Warning:</strong> Data persistence unavailable - entries will be lost on refresh
         </div>
       )}
 
-      <div className="dashboard-content">
+      <main id="main-content" className="dashboard-content" role="main">
         {/* Entry Form Section */}
-        <section className="dashboard-section form-section">
+        <section 
+          className="dashboard-section form-section" 
+          aria-labelledby="form-heading"
+        >
           <WasteEntryForm />
         </section>
 
         {/* Statistics Section */}
-        <section className="dashboard-section statistics-section">
-          <h2>Summary Statistics</h2>
+        <section 
+          className="dashboard-section statistics-section"
+          aria-labelledby="statistics-heading"
+        >
+          <h2 id="statistics-heading">Summary Statistics</h2>
           <StatisticsPanel statistics={statistics} />
         </section>
 
         {/* Charts Section */}
-        <section className="dashboard-section charts-section">
+        <section 
+          className="dashboard-section charts-section"
+          aria-labelledby="charts-heading"
+        >
           <ChartSection entries={entries} />
         </section>
 
         {/* Entry List Section */}
-        <section className="dashboard-section list-section">
+        <section 
+          className="dashboard-section list-section"
+          aria-labelledby="entries-heading"
+        >
           <WasteEntryList entries={entries} onDelete={deleteEntry} />
         </section>
-      </div>
+      </main>
     </div>
   );
 }

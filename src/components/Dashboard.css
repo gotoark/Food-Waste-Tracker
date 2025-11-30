@@ -6,16 +6,38 @@
 
 .dashboard {
   min-height: 100vh;
-  background-color: #f5f7fa;
+  background-color: var(--color-bg-secondary);
+  position: relative;
+}
+
+/* Skip to main content link for accessibility */
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 var(--radius-md) 0;
+  font-weight: 500;
+  transition: top var(--transition-fast);
+}
+
+.skip-to-main:focus {
+  top: 0;
+  outline: 2px solid white;
+  outline-offset: -4px;
 }
 
 /* Header Section */
 .dashboard-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   color: white;
-  padding: 2rem 1.5rem;
+  padding: var(--spacing-xl) var(--spacing-lg);
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .dashboard-header h1 {
@@ -23,72 +45,91 @@
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -0.5px;
+  color: white;
 }
 
 .dashboard-subtitle {
-  margin: 0.5rem 0 0 0;
+  margin: var(--spacing-sm) 0 0 0;
   font-size: 1.1rem;
   opacity: 0.95;
   font-weight: 300;
+  color: white;
 }
 
 /* Error and Warning Banners */
 .error-banner,
 .warning-banner {
-  padding: 1rem 1.5rem;
+  padding: var(--spacing-md) var(--spacing-lg);
   margin: 0;
   text-align: center;
   font-size: 0.95rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .error-banner {
-  background-color: #fee;
-  color: #c33;
-  border-bottom: 2px solid #fcc;
+  background-color: var(--color-error-light);
+  color: var(--color-error-dark);
+  border-bottom: 2px solid var(--color-error);
 }
 
 .warning-banner {
-  background-color: #fffbea;
-  color: #996600;
-  border-bottom: 2px solid #ffe066;
+  background-color: var(--color-warning-light);
+  color: var(--color-warning-dark);
+  border-bottom: 2px solid var(--color-warning);
 }
 
 .error-banner strong,
 .warning-banner strong {
   font-weight: 600;
-  margin-right: 0.5rem;
+  margin-right: var(--spacing-sm);
 }
 
 /* Main Content Container */
 .dashboard-content {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: var(--spacing-xl) var(--spacing-lg);
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: var(--spacing-xl);
 }
 
 /* Dashboard Sections */
 .dashboard-section {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.3s ease;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-slow), transform var(--transition-base);
 }
 
 .dashboard-section:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.dashboard-section:focus-within {
+  box-shadow: var(--shadow-xl);
 }
 
 .dashboard-section > h2 {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 var(--spacing-lg) 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #2d3748;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 0.75rem;
+  color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-gray-200);
+  padding-bottom: var(--spacing-sm);
 }
 
 /* Responsive Grid Layout */
@@ -104,12 +145,16 @@
   }
 
   .dashboard-content {
-    padding: 1rem;
-    gap: 1.5rem;
+    padding: var(--spacing-md);
+    gap: var(--spacing-lg);
   }
 
   .dashboard-section {
-    padding: 1rem;
+    padding: var(--spacing-md);
+  }
+  
+  .dashboard-section:hover {
+    transform: none;
   }
 
   .dashboard-section > h2 {
@@ -121,6 +166,7 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .dashboard-content {
     grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
   }
 
   .form-section {
@@ -144,7 +190,7 @@
 @media (min-width: 1025px) {
   .dashboard-content {
     grid-template-columns: repeat(12, 1fr);
-    gap: 2rem;
+    gap: var(--spacing-xl);
   }
 
   .form-section {
@@ -167,11 +213,11 @@
 /* Large Desktop: Even more optimized layout */
 @media (min-width: 1400px) {
   .dashboard-content {
-    padding: 2.5rem 2rem;
+    padding: var(--spacing-2xl) var(--spacing-xl);
   }
 
   .dashboard-header {
-    padding: 2.5rem 2rem;
+    padding: var(--spacing-2xl) var(--spacing-xl);
   }
 }
 
