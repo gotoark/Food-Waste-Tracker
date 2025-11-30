@@ -101,7 +101,7 @@
   - Style as card grid with clear labels and large numbers
   - _Requirements: 2.4, 4.1, 4.2, 4.3, 4.4_
 
-- [ ] 8. Implement chart components
+- [x] 8. Implement chart components
   - Create PieChart component for waste distribution by category
   - Create BarChart component for edible vs non-edible comparison
   - Create LineChart component for waste trends over time
