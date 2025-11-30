@@ -32,7 +32,7 @@ export function Dashboard() {
       <header className="dashboard-header" role="banner">
         <h1>Food Waste Tracker</h1>
         <p className="dashboard-subtitle">
-          Monitor and analyze food waste to understand its impact
+          Monitor and analyze food waste to understand its impact | Powered by Amazon kiro
         </p>
       </header>
 
@@ -84,6 +84,15 @@ export function Dashboard() {
           <WasteEntryList entries={entries} onDelete={deleteEntry} />
         </section>
       </main>
+
+      <footer className="dashboard-footer" role="contentinfo">
+        <p className="footer-tagline">
+          Monitor and analyze food waste to understand its impact
+        </p>
+        <p className="footer-credits">
+          Developed with love 😊 in AI for Bharat | Powered by Amazon Kiro ✨
+        </p>
+      </footer>
     </div>
   );
 }

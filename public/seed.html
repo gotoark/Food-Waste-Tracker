@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seed Data - Food Waste Tracker</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px 10px 10px 0;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .success {
+      background: #27ae60;
+      padding: 12px;
+      border-radius: 4px;
+      color: white;
+      margin-top: 20px;
+      display: none;
+    }
+    .info {
+      background: #ecf0f1;
+      padding: 15px;
+      border-radius: 4px;
+      margin: 20px 0;
+      color: #34495e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🗑️ Food Waste Tracker - Data Seeder</h1>
+    
+    <div class="info">
+      <strong>Instructions:</strong> Click a button below to populate your Food Waste Tracker with sample data. This will add random waste entries to localStorage.
+    </div>
+
+    <button onclick="seedData(10)">Add 10 Entries</button>
+    <button onclick="seedData(20)">Add 20 Entries</button>
+    <button onclick="seedData(50)">Add 50 Entries</button>
+    <button onclick="clearData()" style="background: #e74c3c;">Clear All Data</button>
+
+    <div class="success" id="message"></div>
+
+    <div class="info" style="margin-top: 30px;">
+      <strong>Next Step:</strong> After seeding data, go back to the main app at <a href="/">localhost:5173</a> and refresh the page.
+    </div>
+  </div>
+
+  <script>
+    const WasteCategory = {
+      FRUITS: 'Fruits',
+      VEGETABLES: 'Vegetables',
+      GRAINS: 'Grains',
+      PROTEINS: 'Proteins',
+      DAIRY: 'Dairy',
+      OTHER: 'Other'
+    };
+
+    const foodItems = {
+      [WasteCategory.FRUITS]: ['Apples', 'Bananas', 'Oranges', 'Strawberries', 'Grapes', 'Watermelon', 'Pineapple', 'Mango', 'Peaches'],
+      [WasteCategory.VEGETABLES]: ['Lettuce', 'Tomatoes', 'Carrots', 'Broccoli', 'Spinach', 'Bell Peppers', 'Cucumbers', 'Onions', 'Potatoes'],
+      [WasteCategory.GRAINS]: ['Bread', 'Rice', 'Pasta', 'Cereal', 'Tortillas', 'Crackers', 'Bagels', 'Muffins'],
+      [WasteCategory.PROTEINS]: ['Chicken', 'Beef', 'Fish', 'Eggs', 'Tofu', 'Beans', 'Lentils', 'Pork'],
+      [WasteCategory.DAIRY]: ['Milk', 'Cheese', 'Yogurt', 'Butter', 'Cream', 'Ice Cream'],
+      [WasteCategory.OTHER]: ['Leftovers', 'Mixed meal', 'Soup', 'Sauce', 'Snacks', 'Pizza']
+    };
+
+    function getRandomItem(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function getRandomDate(daysBack) {
+      const now = new Date();
+      const daysAgo = getRandomInt(0, daysBack);
+      const date = new Date(now);
+      date.setDate(date.getDate() - daysAgo);
+      date.setHours(getRandomInt(8, 20), getRandomInt(0, 59), 0, 0);
+      return date;
+    }
+
+    function generateUUID() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    function generateRandomEntries(count) {
+      const entries = [];
+      const categories = Object.values(WasteCategory);
+
+      for (let i = 0; i < count; i++) {
+        const category = getRandomItem(categories);
+        const foodType = getRandomItem(foodItems[category]);
+        const quantityGrams = getRandomInt(50, 2000);
+        const isEdible = Math.random() > 0.4;
+        const timestamp = getRandomDate(30);
+
+        entries.push({
+          id: generateUUID(),
+          foodType,
+          category,
+          quantityGrams,
+          isEdible,
+          timestamp: timestamp.toISOString()
+        });
+      }
+
+      return entries.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    }
+
+    function seedData(count) {
+      const entries = generateRandomEntries(count);
+      localStorage.setItem('foodWasteEntries', JSON.stringify(entries));
+      
+      const message = document.getElementById('message');
+      message.textContent = `✅ Successfully added ${count} random waste entries! Refresh the main app to see them.`;
+      message.style.display = 'block';
+      
+      setTimeout(() => {
+        message.style.display = 'none';
+      }, 5000);
+    }
+
+    function clearData() {
+      localStorage.removeItem('foodWasteEntries');
+      
+      const message = document.getElementById('message');
+      message.textContent = '🗑️ All data cleared! Refresh the main app.';
+      message.style.display = 'block';
+      message.style.background = '#e74c3c';
+      
+      setTimeout(() => {
+        message.style.display = 'none';
+        message.style.background = '#27ae60';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>

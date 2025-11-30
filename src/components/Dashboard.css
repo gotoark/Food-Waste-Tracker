@@ -263,3 +263,59 @@
     page-break-inside: avoid;
   }
 }
+
+/* Footer Section */
+.dashboard-footer {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  text-align: center;
+  margin-top: var(--spacing-2xl);
+  border-top: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-tagline {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.95;
+  color: white;
+}
+
+.footer-credits {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 300;
+  opacity: 0.9;
+  color: white;
+  letter-spacing: 0.3px;
+}
+
+/* Mobile footer adjustments */
+@media (max-width: 768px) {
+  .dashboard-footer {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .footer-tagline {
+    font-size: 0.95rem;
+  }
+
+  .footer-credits {
+    font-size: 0.85rem;
+  }
+}
+
+/* Print styles for footer */
+@media print {
+  .dashboard-footer {
+    background: white;
+    color: black;
+    border-top: 1px solid #ccc;
+  }
+
+  .footer-tagline,
+  .footer-credits {
+    color: black;
+  }
+}
