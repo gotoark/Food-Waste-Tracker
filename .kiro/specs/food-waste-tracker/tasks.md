@@ -77,7 +77,7 @@
   - **Property 12: Deletion removes entry**
   - **Validates: Requirements 5.1**
 
-- [ ] 6. Build WasteEntryForm component
+- [x] 6. Build WasteEntryForm component
   - Create form with inputs for food type, category dropdown, quantity, and edibility checkbox
   - Implement form validation for required fields and quantity range
   - Add form submission handler that calls context addEntry
