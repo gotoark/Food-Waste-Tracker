@@ -94,7 +94,7 @@
   - Test empty and whitespace-only food type inputs
   - _Requirements: 1.2, 1.5_
 
-- [ ] 7. Build StatisticsPanel component
+- [x] 7. Build StatisticsPanel component
   - Create component that receives WasteStatistics as props
   - Display total waste in kg, edible percentage, entry count, and servings equivalent
   - Format numbers using calculation service utilities
